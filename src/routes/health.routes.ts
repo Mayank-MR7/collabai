@@ -1,6 +1,8 @@
 import { Router } from "express";
 const router = Router();
 import type { User } from "../types/user.types.js";
+import type { ApiResponse } from "../types/api.types.js";
+import { createSuccessResponse } from "../utils/response.util.js";
 
 function gethealthyMessage(): string {
   return "Sever is healthy";
@@ -21,11 +23,11 @@ const memberuser: User = {
 };
 
 router.get("/health", (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: gethealthyMessage(),
-    users: [adminUser, memberuser],
-  });
+  const response = createSuccessResponse("server is healthy", [
+    adminUser,
+    memberuser,
+  ]);
+  res.status(200).json(response);
 });
 
 export default router;
