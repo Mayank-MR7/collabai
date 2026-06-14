@@ -22,6 +22,13 @@ const memberuser: User = {
   role: "member",
 };
 
+const testUser: User = {
+  id: "100",
+  name: "TEST",
+  email: "test@gmail.com",
+  role: "admin",
+};
+
 router.get("/health", (req, res) => {
   const response = createSuccessResponse("server is healthy", [
     adminUser,
